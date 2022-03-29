@@ -21,6 +21,7 @@ class Board extends React.Component {
 
     render() {
         return (
+            
             <div>
                 <div className="board-row">
                     {this.renderSquare(0)}
@@ -76,16 +77,7 @@ class Game extends React.Component {
         });
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     render() {
         const history = this.state.history;
         const current = history[this.state.stepNumber];
@@ -101,14 +93,20 @@ class Game extends React.Component {
                 </li>
             );
         });
-
+        let stepNumber = this.state.stepNumber;
         let status;
         if (winner) {
             status = 'Winner: ' + winner;
         }
         else{
-            status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+            if(stepNumber > 8){
+                status = "DRAW";
+            }
+            else{
+                status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+            }
         }
+
         return (
             <div className="game">
                 <div className="game-board">
